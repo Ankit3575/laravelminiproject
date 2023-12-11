@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\admintbl;
 use App\Models\categorytbl;
+use App\Models\subcategory;
 
 class admincontroller extends Controller
 {
@@ -30,10 +31,28 @@ class admincontroller extends Controller
     }
 
 
-    public function admintbl(Request $result){
-        $data=new admintbl;
-        $data->catname= $result->catname;
+    public function categorycode(Request $result)
+    {
+        $data = new categorytbl;
+        $data->catname = $result->catname;
         $data->save();
         return redirect("addcategory");
+    }
+      
+
+    public function subcategory(Request $result)
+    {
+        $data = categorytbl::all();
+        return view('addsubcategory',compact('data'));
+
+    }
+    public function subcatcode(Request $result)
+    {
+        $data =new subcategory;
+        $data->catid = $result->catid;
+        $data->subcat = $result->subcat;
+        $data->save();
+        return redirect('addsubcategory');
+
     }
 }

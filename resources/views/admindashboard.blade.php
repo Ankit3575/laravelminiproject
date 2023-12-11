@@ -8,10 +8,10 @@
 <body>
     <h1>Admin Dashboard</h1>
     <a href="{{'addcategory'}}">Add Category</a><br><br>
-    <a href="">All Category</a><br><br>
-    <a href="">Add Sub-Category</a><br><br>
+    <a href="{{'allcategory'}}">All Category</a><br><br>
+    <a href="{{'addsubcategory'}}">Add Sub-Category</a><br><br>
     <a href="">All Sub-Category</a><br><br>
-    <a href="">Add Product</a><br><br>
+    <a href="{{addproduct}}">Add Product</a><br><br>
     <a href="">All Product</a><br><br>
     <a href="">All Users</a><br><br>
     <a href="">All Contact Or Complain</a><br><br>

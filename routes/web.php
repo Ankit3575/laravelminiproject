@@ -34,3 +34,5 @@ Route::view('admindashboard','admindashboard');
 Route::post('admindashboardcode',[admincontroller::class,'admindashboardcode']);
 Route::view('addcategory','addcategory');
 Route::post('categorycode',[admincontroller::class,'categorycode']);
+// Route::view('addsubcategory','addsubcategory');
+Route::post('addsubcategory',[admincontroller::class,'subcategory']);
