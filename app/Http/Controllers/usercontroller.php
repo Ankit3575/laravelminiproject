@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\contacttbl;
 use App\Models\producttbl;
 use App\Models\signuptbl;
+use App\Models\subcategory;
+use App\Models\carttbl;
 use Illuminate\Http\Request;
 
 class usercontroller extends Controller
@@ -162,6 +164,27 @@ else{
 public function userproduct(){
 $data=producttbl::all();
 return view('userproduct',compact('data'));
+}
+
+public function addtocart($id){
+$pid=$id;
+$sesid=session()->get('user');
+$data=new carttbl();
+$date=date("d/m/y");
+$data->pid=$pid;
+$data->userid=$sesid;
+$data->date=$date;
+$data->save();
+return redirect('product');
+}
+
+public function cart(){
+    $sesid=session()->get('user');
+    $check=carttbl::where('userid',$sesid);
+    $pid=$check->pid;
+    $data=producttbl::where('id',$pid);
+    return view('cart',compact('data'));
+
 }
 
 }
