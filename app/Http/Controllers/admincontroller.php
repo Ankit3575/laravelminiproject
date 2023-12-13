@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\admintbl;
 use App\Models\categorytbl;
 use App\Models\subcategory;
+use App\Models\producttbl;
 
 class admincontroller extends Controller
 {
@@ -38,21 +39,40 @@ class admincontroller extends Controller
         $data->save();
         return redirect("addcategory");
     }
-      
+
 
     public function subcategory(Request $result)
     {
         $data = categorytbl::all();
-        return view('addsubcategory',compact('data'));
-
+        return view('addsubcategory', compact('data'));
     }
     public function subcatcode(Request $result)
     {
-        $data =new subcategory;
+        $data = new subcategory;
         $data->catid = $result->catid;
         $data->subcat = $result->subcat;
         $data->save();
         return redirect('addsubcategory');
+    }
+    public function allcategory()
+    {
+        $data = categorytbl::all();
+        return view('allcategory', compact('data'));
+    }
 
+    public function addproductcode(Request $result)
+    {
+        $data = new producttbl;
+        $data->pname = $result->pname;
+        $data->pprice = $result->pprice;
+        $data->oprice = $result->oprice;
+        $data->pdesc = $result->pdesc;
+        $a = $result->file("files");
+        $data->pimage = $a->getClientOriginalName();
+        $data->save();
+        $path = "product/";
+        if ($a->move($path, $a->getClientOriginalName())) {
+            return redirect("addproduct");
+        }
     }
 }

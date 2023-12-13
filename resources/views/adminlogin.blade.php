@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Admin login Page</h1>
-    <form action="admincode" method="post">
+    <form action="admincode" method="get">
         @csrf
         Enter Email <input type="text" name="email" id=""><br><br>
         Enter Password <input type="password" name="pass" id=""><br><br>

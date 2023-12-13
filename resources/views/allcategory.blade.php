@@ -9,17 +9,19 @@
     <h1>
         allcategory page
     </h1>
-    <form action="allcategorycode" method="post">
+    <form action="allcategory" method="post">
         @csrf
         <table border="1">
             <tr>
                 <th>id</th>
                 <th>Category name</th>
             </tr>
+            @foreach($data as $x)
             <tr>
-                <td></td>
-                <td></td>
+                <td>{{$x->id}}</td>
+                <td>{{$x->catname}}</td>
             </tr>
+            @endforeach
         </table>
     </form>
 </body>

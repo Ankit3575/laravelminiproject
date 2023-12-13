@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\contacttbl;
+use App\Models\producttbl;
 use App\Models\signuptbl;
 use Illuminate\Http\Request;
 
@@ -156,6 +157,11 @@ if($sesid){
 else{
     echo 'logout failed';
 }
+}
+
+public function userproduct(){
+$data=producttbl::all();
+return view('userproduct',compact('data'));
 }
 
 }

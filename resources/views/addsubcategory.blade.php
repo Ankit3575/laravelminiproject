@@ -9,7 +9,7 @@
 
 <body>
     <h1>Add sub category page</h1>
-    <form action="subcatcode" method="post">
+    <form action="subcatcode" method="get">
         @csrf
         Select Category
         <select name="catid" id="">

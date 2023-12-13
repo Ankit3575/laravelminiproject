@@ -29,10 +29,12 @@ Route::post('contactcode',[usercontroller::class,'contactcode']);
 Route::get('logout',[usercontroller::class,'logout']);
 // admin panel code
 Route::view('adminlogin','adminlogin');
-Route::post('admincode',[admincontroller::class,'admincode']);
+Route::get('admincode',[admincontroller::class,'admincode']);
 Route::view('admindashboard','admindashboard');
-Route::post('admindashboardcode',[admincontroller::class,'admindashboardcode']);
 Route::view('addcategory','addcategory');
 Route::post('categorycode',[admincontroller::class,'categorycode']);
-// Route::view('addsubcategory','addsubcategory');
-Route::post('addsubcategory',[admincontroller::class,'subcategory']);
+Route::get('addsubcategory',[admincontroller::class,'subcatcode']);
+Route::get('allcategory',[admincontroller::class,'allcategory']);
+Route::view('addproduct','addproduct');
+Route::post('addproduct',[admincontroller::class,'addproductcode']);
+Route::get('userproduct',[usercontroller::class,'userproduct']);
