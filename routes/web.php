@@ -38,5 +38,5 @@ Route::get('allcategory',[admincontroller::class,'allcategory']);
 Route::view('addproduct','addproduct');
 Route::post('addproductcode',[admincontroller::class,'addproductcode']);
 Route::get('userproduct',[usercontroller::class,'userproduct']);
-Route::get('addtocart/{id}',[usercontroller::class,'addtocart']);
+Route::get('addtocart/{id}',[usercontroller::class,'cart']);
 Route::get('cart',[usercontroller::class,'cart']);

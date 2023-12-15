@@ -34,22 +34,23 @@ class admincontroller extends Controller
 
     public function categorycode(Request $result)
     {
-        $data = new categorytbl;
+        $data = new categorytbl();
         $data->catname = $result->catname;
         $data->save();
         return redirect("addcategory");
     }
 
 
-    // public function subcategory(Request $result)
-    // {
-    //     $data = categorytbl::all();
-    //     return view('addsubcategory', compact('data'));
-    // }
-    public function subcategory(Request $result)
+    public function subcategory()
     {
-        $data = new subcategorytbl;
-        $data->catid = $result->catid;
+
+        $data = categorytbl::all();
+        return view('addsubcategory', compact('data'));
+    }
+    public function subcategorytbl(Request $result)
+    {
+        $data = new subcategorytbl();
+        $data->catid = $result->id;
         $data->subcat = $result->subcat;
         $data->save();
         return redirect('addsubcategory');
@@ -62,7 +63,7 @@ class admincontroller extends Controller
 
     public function addproductcode(Request $result)
     {
-        $data = new producttbl;
+        $data = new producttbl();
         $data->pname = $result->pname;
         $data->pprice = $result->pprice;
         $data->oprice = $result->oprice;

@@ -18,8 +18,8 @@
                     <div class="card-body">
                         <h5 class="card-title">{{$x->pname}}</h5>
                         <h5 class="card-title">{{$x->pprice}}</h5>
-                        <p class="card-text">{{$X->pdesc}}</p>
-                        <a href="{{'addtocart/'.$x->id}}" class="btn btn-primary">Add To Product</a>
+                        <p class="card-text">{{$x->pdesc}}</p>
+                        <a href="{{'addtocart/'.$x->id}}"><button class="btn btn-warning">Add To Product</button></a><br><br>
                     </div>
                 </div>
             </div>

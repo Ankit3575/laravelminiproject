@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\contacttbl;
 use App\Models\producttbl;
 use App\Models\signuptbl;
-use App\Models\subcategory;
 use App\Models\carttbl;
 use Illuminate\Http\Request;
 
@@ -135,56 +134,63 @@ class usercontroller extends Controller
         }
     }
 
-    public function contactcode(Request $result){
-        $data=new contacttbl();
-        $date=date("d/m/y");
+    public function contactcode(Request $result)
+    {
+        $data = new contacttbl();
+        $date = date("d/m/y");
         date_default_timezone_set("asia/kolkata");
-        $time=date("h:i:sa");
-        $data->name=$result->name;
-        $data->mobile=$result->num;
-        $data->subject=$result->sub;
-        $data->message=$result->msg;
-        $data->date=$date;
-        $data->time=$time;
+        $time = date("h:i:sa");
+        $data->name = $result->name;
+        $data->mobile = $result->num;
+        $data->subject = $result->sub;
+        $data->message = $result->msg;
+        $data->date = $date;
+        $data->time = $time;
         $data->save();
         return redirect("dashboard");
     }
 
-public function logout(){
-$sesid=session()->get('user');
-if($sesid){
-    session()->flush();
-    return redirect('login');
-}
-else{
-    echo 'logout failed';
-}
-}
+    public function logout()
+    {
+        $sesid = session()->get('user');
+        if ($sesid) {
+            session()->flush();
+            return redirect('login');
+        } else {
+            echo 'logout failed';
+        }
+    }
 
-public function userproduct(){
-$data=producttbl::all();
-return view('userproduct',compact('data'));
-}
+    public function userproduct()
+    {
+        $data = producttbl::all();
+        return view('userproduct', compact('data'));
+    }
 
-public function addtocart($id){
-$pid=$id;
-$sesid=session()->get('user');
-$data=new carttbl();
-$date=date("d/m/y");
-$data->pid=$pid;
-$data->userid=$sesid;
-$data->date=$date;
-$data->save();
-return redirect('product');
-}
+    public function addtocart($id)
+    {
+       echo $pid = $id;
+       echo  $sesid = session()->get('user');
+       echo $data = new carttbl();
+        $data->pid = $pid;
+        $data->userid = $sesid;
+        $data->save();
+        return redirect('product');
+    }
 
-public function cart(){
-    $sesid=session()->get('user');
-    $check=carttbl::where('userid',$sesid);
-    $pid=$check->pid;
-    $data=producttbl::where('id',$pid);
-    return view('cart',compact('data'));
-
-}
-
+    public function cart()
+    {
+        $sesid = session()->get('user');
+        $check = carttbl::where('userid', $sesid)->get();
+        $productData=[];
+        foreach ($check as $x) {
+            $data = producttbl::where('id', $x->pid)->first(); //retrieve a single product
+            if($data !==null){
+           $productData[] = $data;//add the product data an array
+            }
+        }
+                return view('cart', compact('productData'));
+            }
+        
+    
 }
